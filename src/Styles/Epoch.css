@@ -1,0 +1,351 @@
+/* ═══════════════════════════════════════════════════════
+   EPOCH — Cinematic Edition
+   ═══════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --epoch-bg: #080808;
+  --epoch-card: #111111;
+  --epoch-border: rgba(255,255,255,0.07);
+  --epoch-border-hover: rgba(255,255,255,0.18);
+  --epoch-accent: #c8a96e;
+  --epoch-accent-dim: rgba(200,169,110,0.15);
+  --epoch-text: #f0ece4;
+  --epoch-muted: #5a5650;
+  --epoch-subtle: #2a2825;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+}
+
+.epoch-wrap {
+  width: 82vw;
+  margin: 0 auto;
+  padding: 2.5rem 0 3rem;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.epoch-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 58px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--epoch-text);
+  margin-bottom: 2px;
+  line-height: 1;
+  display: inline-block;
+}
+
+.epoch-title::after {
+  content: '';
+  display: block;
+  width: 36px;
+  height: 3px;
+  background: var(--epoch-accent);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+.epoch-subtitle {
+  font-size: 11px;
+  color: var(--epoch-muted);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  margin-top: 10px;
+}
+
+/* ── Featured row ── */
+.epoch-featured {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 32px;
+  align-items: stretch;
+}
+
+.epoch-feat-content {
+  background: var(--epoch-card);
+  border: 1px solid var(--epoch-border);
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.epoch-feat-content::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--epoch-accent), transparent);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.epoch-feat-header { display: flex; flex-direction: column; gap: 5px; flex-shrink: 0; }
+
+.epoch-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--epoch-accent);
+  font-weight: 500;
+}
+
+.epoch-feat-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px;
+  letter-spacing: 0.08em;
+  color: var(--epoch-text);
+  margin: 0;
+  line-height: 1.05;
+}
+
+.epoch-feat-lead {
+  font-size: 12.5px;
+  color: #7a756e;
+  line-height: 1.8;
+  margin: 0;
+  padding-left: 14px;
+  border-left: 2px solid var(--epoch-accent);
+  flex-shrink: 0;
+}
+
+.epoch-feat-divider {
+  width: 100%; height: 1px;
+  background: var(--epoch-border);
+  border: none; margin: 0; flex-shrink: 0;
+}
+
+.epoch-feat-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.epoch-feat-list li {
+  display: flex; gap: 12px; align-items: flex-start;
+  padding: 8px 10px; border-radius: 10px;
+  transition: background 0.2s;
+}
+
+.epoch-feat-list li:hover { background: rgba(255,255,255,0.03); }
+
+.epoch-list-icon {
+  width: 28px; height: 28px; min-width: 28px;
+  border-radius: 7px;
+  background: var(--epoch-accent-dim);
+  border: 1px solid rgba(200,169,110,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; line-height: 1;
+}
+
+.epoch-list-text { display: flex; flex-direction: column; gap: 2px; }
+.epoch-list-title { font-size: 12.5px; font-weight: 600; color: var(--epoch-text); line-height: 1.4; }
+.epoch-list-body  { font-size: 11px; color: var(--epoch-muted); line-height: 1.6; }
+
+/* ── RIGHT: Split image card ── */
+.epoch-feat-img {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: #0a0a0a;
+  /* Portrait poster ratio ~9:16 */
+  aspect-ratio: 9 / 16;
+  max-height: 700px;
+  position: relative;
+  border: 1px solid var(--epoch-border);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Full poster visible — no cropping */
+.epoch-feat-img-top {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.epoch-feat-img-top img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center center;
+  transition: transform 0.6s ease;
+}
+
+.epoch-feat-img:hover .epoch-feat-img-top img { transform: scale(1.02); }
+
+.epoch-feat-img-divider { display: none; }
+.epoch-feat-img-bottom  { display: none; }
+
+/* Label */
+.epoch-feat-img-label {
+  position: absolute;
+  bottom: 14px; left: 16px;
+  z-index: 5;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(8,8,8,0.75);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--epoch-border-hover);
+  border-radius: 8px;
+  padding: 6px 12px;
+}
+
+.epoch-feat-img-label span {
+  font-size: 11px; color: var(--epoch-text);
+  letter-spacing: 0.08em; font-weight: 500;
+}
+
+.epoch-feat-img-label-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--epoch-accent);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ── CAROUSEL ── */
+.epoch-carousel { overflow: hidden; }
+.epoch-track-wrap { overflow: hidden; }
+
+.epoch-track {
+  display: flex; gap: 16px;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.epoch-old-card {
+  flex: 0 0 calc(33.33% - 11px);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--epoch-border);
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+  /* Portrait poster ratio */
+  aspect-ratio: 9 / 16;
+  max-height: 420px;
+  height: auto;
+}
+
+.epoch-old-card:hover {
+  border-color: var(--epoch-border-hover);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+.epoch-old-img-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.epoch-card-img-top {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.epoch-card-img-top img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  object-position: center center;
+  transition: transform 0.4s ease;
+}
+
+.epoch-old-card:hover .epoch-card-img-top img { transform: scale(1.03); }
+
+.epoch-card-img-divider { display: none; }
+.epoch-card-img-bottom  { display: none; }
+
+/* Info strip */
+.epoch-old-info {
+  height: 54px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--epoch-border);
+  background: var(--epoch-card);
+  display: flex; flex-direction: column; justify-content: center;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.epoch-old-info::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 14px;
+  width: 24px; height: 2px;
+  background: var(--epoch-accent);
+}
+
+.epoch-old-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 16px; letter-spacing: 0.08em;
+  color: var(--epoch-text); line-height: 1.2;
+}
+
+.epoch-old-tag {
+  font-size: 10px; color: var(--epoch-muted);
+  margin-top: 1px; text-transform: uppercase; letter-spacing: 0.15em;
+}
+
+/* ── Nav ── */
+.epoch-nav {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-top: 16px;
+}
+
+.epoch-nav-btn {
+  background: var(--epoch-card);
+  border: 1px solid var(--epoch-border);
+  border-radius: 10px; padding: 8px 22px;
+  font-size: 18px; cursor: pointer; line-height: 1;
+  color: #888; font-family: inherit;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.epoch-nav-btn:hover {
+  background: var(--epoch-subtle);
+  border-color: var(--epoch-border-hover);
+  color: var(--epoch-text);
+}
+
+.epoch-dots { display: flex; gap: 6px; align-items: center; }
+
+.epoch-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--epoch-subtle);
+  border: none; cursor: pointer; padding: 0;
+  transition: background 0.25s, width 0.25s;
+}
+
+.epoch-dot.active {
+  background: var(--epoch-accent);
+  width: 18px; border-radius: 3px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .epoch-featured { grid-template-columns: 1fr; }
+  .epoch-feat-content { height: auto; }
+  .epoch-feat-img { height: 360px; }
+  .epoch-old-card { flex: 0 0 80%; }
+}
+@media (max-width: 500px) {
+  .epoch-old-card { flex: 0 0 90%; }
+}
